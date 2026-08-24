@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Library operations workspace" />
+    <title>Library Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/page-transition.js" defer></script>
+  </head>
+  <body class="dashboard-page page-enter">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Library workspace home"><span class="brand-mark" aria-hidden="true">B</span><span>Library <em>Workspace</em></span></a>
+      <div class="status-pill"><span class="status-dot"></span> Eden's Workspace</div>
+    </header>
+
+    <main class="dashboard">
+      <section class="dashboard-welcome" aria-labelledby="dashboard-title">
+        <div>
+          <div class="eyebrow">Library operations / Home</div>
+          <h1 id="dashboard-title">Good morning, <span>Eden.</span></h1>
+          <p>Everything you need to keep the library moving, in one quiet workspace.</p>
+        </div>
+        <div class="date-block"><strong>24</strong><span>August 2026</span></div>
+      </section>
+
+      <section class="tool-section" aria-labelledby="tools-title">
+        <div class="section-heading"><div><span class="step-label">Workspace tools</span><h2 id="tools-title">Choose a tool</h2></div><span class="tool-count">05 active · 01 planned</span></div>
+        <div class="tool-grid">
+          <a class="tool-card tool-card-primary" href="/catalog.html">
+            <div class="tool-icon icon-book" aria-hidden="true">B</div>
+            <div class="tool-card-body"><span class="tool-status active">Active now</span><h3>Book Catalog AI</h3><p>Generate DDC, Cutter, and LCSH suggestions for librarian review.</p><span class="tool-link">Open cataloging desk <b>→</b></span></div>
+          </a>
+          <a class="tool-card tool-card-secondary" href="/patrons.html"><div class="tool-icon icon-people" aria-hidden="true">P</div><div class="tool-card-body"><span class="tool-status active">Active now</span><h3>Patrons</h3><p>Search member records, activity, and account details.</p><span class="tool-link">Open patron records <b>→</b></span></div></a>
+          <a class="tool-card tool-card-secondary" href="/internet-room.html"><div class="tool-icon icon-screen" aria-hidden="true">I</div><div class="tool-card-body"><span class="tool-status active">Active now</span><h3>Internet Room</h3><p>Track computer stations, sessions, and availability.</p><span class="tool-link">Open internet room <b>→</b></span></div></a>
+          <a class="tool-card tool-card-secondary" href="/patron-registration.html"><div class="tool-icon icon-add" aria-hidden="true">+</div><div class="tool-card-body"><span class="tool-status active">Active now</span><h3>Patron Registration</h3><p>Register new patrons and issue library access cards.</p><span class="tool-link">Register a patron <b>→</b></span></div></a>
+          <a class="tool-card tool-card-secondary" href="/discussion-room.html"><div class="tool-icon icon-chat" aria-hidden="true">D</div><div class="tool-card-body"><span class="tool-status active">Active now</span><h3>Discussion Room</h3><p>Manage group reservations and live room sessions.</p><span class="tool-link">Open discussion rooms <b>→</b></span></div></a>
+          <a class="tool-card" href="#reports"><div class="tool-icon icon-chart" aria-hidden="true">R</div><div class="tool-card-body"><span class="tool-status">Coming next</span><h3>Reports</h3><p>Understand circulation, cataloging, and room usage.</p><span class="tool-link">View tool <b>→</b></span></div></a>
+        </div>
+      </section>
+
+      <section class="dashboard-note"><span class="note-icon" aria-hidden="true">i</span><span>More library tools will appear here as they become ready for use.</span></section>
+    </main>
+    <footer><span>LIBRARY WORKSPACE by Eden</span><span>OPERATIONS · SERVICE · DISCOVERY</span></footer>
+  </body>
+</html>

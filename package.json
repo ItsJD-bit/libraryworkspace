@@ -1,0 +1,24 @@
+{
+  "name": "book-catalog-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-assisted book cataloging service for DDC, Cutter numbers, and LCSH suggestions.",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "check": "node --check src/server.js && node --check src/catalogPrompt.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "openai": "^4.77.0",
+    "zod": "^3.24.1"
+  }
+}

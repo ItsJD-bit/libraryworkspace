@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Library internet room workspace" />
+    <title>Internet Room | Library Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/js/discussion-room.js" defer></script>
+  </head>
+  <body class="page-enter">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Library workspace home"><span class="brand-mark" aria-hidden="true">B</span><span>Library <em>Workspace</em></span></a>
+      <div class="status-pill"><span class="status-dot"></span> Eden's Workspace</div>
+    </header>
+
+    <main class="internet-page">
+      <section class="internet-heading">
+        <div><div class="eyebrow">Library operations / 03</div><h1>Internet <span>room.</span></h1><p>Assign a workstation quickly, then scan the active patron's barcode again when their session ends.</p></div>
+        <a class="back-link" href="/">← Dashboard</a>
+      </section>
+
+      <section class="room-overview" aria-label="Internet room status">
+        <div class="overview-number"><strong id="available-count">20</strong><span>Available PCs</span></div>
+        <div class="overview-number"><strong id="in-use-count">0</strong><span>In use</span></div>
+        <div class="overview-number"><strong>20</strong><span>Total units</span></div>
+        <div class="overview-note"><span class="status-dot"></span><span>Room open<br /><small>Sessions are temporary in this workspace</small></span></div>
+      </section>
+
+      <section class="room-actions discussion-actions" aria-labelledby="session-title">
+        <div class="session-intro"><span class="step-label">Reservation desk</span><h2 id="session-title">Build a group</h2><p>Scan the request master's barcode first, then scan each member. A group needs 3–8 patrons.</p><div class="capacity-rule">Minimum 3 · Maximum 8 patrons</div><div id="group-summary" class="group-summary">No patrons scanned yet.</div></div>
+        <div>
+          <form id="session-form" class="session-form">
+            <label class="field barcode-field"><span>Patron barcode</span><input id="barcode-input" name="barcode" autocomplete="off" placeholder="Scan or type barcode" required /></label>
+            <button class="secondary-button" type="submit"><span>Add scanned patron</span><span class="button-arrow" aria-hidden="true">+</span></button>
+          </form>
+          <div id="session-message" class="form-message" role="status" hidden></div>
+          <div id="lobby-list" class="lobby-list"><span class="lobby-empty">Scanned patrons appear in the lobby list.</span></div>
+          <form id="reservation-form" class="reservation-form">
+            <label class="field"><span>Room</span><select id="room-select" name="room" required><option value="Room 1">Room 1</option><option value="Room 2">Room 2</option></select></label>
+            <label class="field"><span>Date</span><input id="date-input" name="date" type="date" required /></label>
+            <label class="field"><span>Start time</span><input name="startTime" type="time" required /></label>
+            <label class="field"><span>Time needed</span><select name="duration" required><option value="30">30 minutes</option><option value="60">1 hour</option><option value="90">1 hour 30 minutes</option><option value="120">2 hours</option><option value="180">3 hours</option></select></label>
+            <button class="primary-button" type="submit"><span>Reserve room</span><span class="button-arrow" aria-hidden="true">→</span></button>
+          </form>
+        </div>
+      </section>
+
+      <section class="pc-section" aria-labelledby="pc-title">
+        <div class="section-heading"><div><span class="step-label">Room map</span><h2 id="pc-title">Workstations</h2></div><span class="form-hint">Select an available unit above</span></div>
+        <div id="pc-grid" class="pc-grid"></div>
+      </section>
+
+      <section class="session-table-panel" aria-labelledby="active-title">
+        <div class="table-toolbar"><div><span class="step-label">Live directory</span><h2 id="active-title">Current room users</h2></div><span id="session-count" class="tool-count">0 active sessions</span></div>
+        <div class="table-scroll"><table><thead><tr><th>Request master</th><th>Department</th><th>Room</th><th>Date</th><th>Time in</th><th>Elapsed time</th></tr></thead><tbody id="session-rows"><tr class="empty-row"><td colspan="6">No rooms are currently in session.</td></tr></tbody></table></div>
+      </section>
+    </main>
+    <footer><span>LIBRARY WORKSPACE by Eden</span><span>INTERNET ROOM · SESSION DESK</span></footer>
+  </body>
+</html>

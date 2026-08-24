@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Library patron registration workspace" />
+    <title>Patron Registration | Library Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/js/patron-registration.js" defer></script>
+  </head>
+  <body class="page-enter">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Library workspace home"><span class="brand-mark" aria-hidden="true">B</span><span>Library <em>Workspace</em></span></a>
+      <div class="status-pill"><span class="status-dot"></span> Eden's Workspace</div>
+    </header>
+    <main class="registration-page">
+      <section class="registration-heading">
+        <div><div class="eyebrow">Library operations / 04</div><h1>Patron <span>registration.</span></h1><p>Create a library record with a barcode that uniquely identifies the patron.</p></div>
+        <a class="back-link" href="/">← Dashboard</a>
+      </section>
+      <section class="registration-layout">
+        <div class="registration-panel">
+          <div class="section-heading"><div><span class="step-label">New record</span><h2>Patron details</h2></div><span class="required-note">* Required</span></div>
+          <form id="registration-form" class="registration-form">
+            <label class="field barcode-field"><span>barcode <b>*</b></span><input name="barcode" required autocomplete="off" placeholder="Scan or type barcode" /></label>
+            <div class="barcode-rule"><span class="note-icon" aria-hidden="true">#</span><span>Barcode is the primary identifier. It cannot be reused.</span></div>
+            <label class="field"><span>first_name <b>*</b></span><input name="first_name" required /></label>
+            <label class="field"><span>last_name <b>*</b></span><input name="last_name" required /></label>
+            <label class="field"><span>course</span><input name="course" /></label>
+            <label class="field"><span>year</span><input name="year" type="number" min="1" /></label>
+            <label class="field"><span>patron_type <b>*</b></span><select name="patron_type" required><option value="">Select type</option><option>Student</option><option>Faculty</option><option>Staff</option><option>Guest</option></select></label>
+            <label class="field"><span>department</span><input name="department" /></label>
+            <label class="field"><span>student_id</span><input name="student_id" /></label>
+            <button class="primary-button" type="submit"><span>Register patron</span><span class="button-arrow" aria-hidden="true">+</span></button>
+          </form>
+          <p id="registration-message" class="form-message" role="status" hidden></p>
+        </div>
+        <aside class="registration-aside"><span class="step-label">Identity check</span><strong>Every patron gets one barcode.</strong><p>Use the scanner for the fastest entry. A barcode already registered in this workspace will be rejected before a record is saved.</p><div class="aside-count"><span id="registered-count">0</span><small>registered<br />patrons</small></div></aside>
+      </section>
+    </main>
+    <footer><span>LIBRARY WORKSPACE by Eden</span><span>PATRON SERVICE · REGISTRATION</span></footer>
+  </body>
+</html>

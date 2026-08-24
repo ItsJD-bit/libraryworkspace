@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Library patron workspace" />
+    <title>Patrons | Library Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/js/patrons.js" defer></script>
+  </head>
+  <body class="page-enter">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Library workspace home"><span class="brand-mark" aria-hidden="true">B</span><span>Library <em>Workspace</em></span></a>
+      <div class="status-pill"><span class="status-dot"></span> Eden's Workspace</div>
+    </header>
+
+    <main class="patrons-page">
+      <section class="patrons-heading">
+        <div><div class="eyebrow">Library operations / 02</div><h1>Patron <span>records.</span></h1><p>Keep student access details clear, searchable, and ready at the service desk.</p></div>
+        <a class="back-link" href="/">← Dashboard</a>
+      </section>
+
+      <section class="patron-form-panel" aria-labelledby="add-patron-title">
+        <div class="section-heading"><div><span class="step-label">New record</span><h2 id="add-patron-title">Add a patron</h2></div><span class="form-hint">Temporary workspace only</span></div>
+        <form id="patron-form" class="patron-form">
+          <label class="field"><span>barcode</span><input name="barcode" required /></label>
+          <label class="field"><span>first_name</span><input name="first_name" required /></label>
+          <label class="field"><span>last_name</span><input name="last_name" required /></label>
+          <label class="field"><span>course</span><input name="course" /></label>
+          <label class="field"><span>year</span><input name="year" type="number" min="1" /></label>
+          <label class="field"><span>patron_type</span><select name="patron_type" required><option value="">Select type</option><option>Student</option><option>Faculty</option><option>Staff</option><option>Guest</option></select></label>
+          <label class="field"><span>department</span><input name="department" /></label>
+          <label class="field"><span>student_id</span><input name="student_id" /></label>
+          <button class="primary-button" type="submit"><span>Add record</span><span class="button-arrow" aria-hidden="true">+</span></button>
+        </form>
+        <p id="patron-message" class="form-message" role="status" hidden></p>
+      </section>
+
+      <section class="patron-table-panel" aria-labelledby="patron-table-title">
+        <div class="table-toolbar"><div><span class="step-label">Directory</span><h2 id="patron-table-title">students</h2></div><label class="search-field"><span>Search records</span><input id="patron-search" type="search" placeholder="Name, barcode, or student_id" /></label></div>
+        <div class="table-scroll"><table><thead><tr><th>id</th><th>barcode</th><th>first_name</th><th>last_name</th><th>course</th><th>year</th><th>patron_type</th><th>department</th><th>student_id</th></tr></thead><tbody id="patron-rows"><tr class="empty-row"><td colspan="9">No patron records in this workspace.</td></tr></tbody></table></div>
+        <div class="table-footer"><span id="record-count">0 records</span><span>Columns mirror the planned students table</span></div>
+      </section>
+    </main>
+    <footer><span>LIBRARY WORKSPACE by Eden</span><span>PATRON SERVICE · PRIVATE WORKSPACE</span></footer>
+  </body>
+</html>

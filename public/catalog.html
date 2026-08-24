@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI-assisted book cataloging workspace" />
+    <title>Book Catalog AI | Library Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body class="page-enter">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Library workspace home"><span class="brand-mark" aria-hidden="true">B</span><span>Library <em>Workspace</em></span></a>
+      <div class="status-pill"><span class="status-dot"></span> Eden's Workspace</div>
+    </header>
+    <main class="workspace">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="eyebrow">Cataloging desk / 01</div>
+        <h1 id="page-title">Turn a book into a<br /><span>review-ready record.</span></h1>
+        <p class="intro-copy">Enter the details you have. The assistant will propose classification and subject headings for a librarian to verify.</p>
+        <div class="method-note"><span class="note-icon" aria-hidden="true">i</span><span>Suggestions are checked against local policy and authoritative records before publication.</span></div>
+      </section>
+      <section class="catalog-panel" aria-label="Book details and catalog result">
+        <form id="catalog-form" class="details-form">
+          <div class="panel-heading"><div><span class="step-label">01 / Source material</span><h2>Book details</h2></div><span class="required-note">* Required</span></div>
+          <div class="field-grid">
+            <label class="field field-wide"><span>Title <b>*</b></span><input name="title" type="text" placeholder="e.g. The City &amp; the City" required maxlength="500" /></label>
+            <label class="field field-wide"><span>Author <b>*</b></span><input name="author" type="text" placeholder="e.g. China Miéville" required maxlength="300" /></label>
+            <label class="field"><span>ISBN</span><input name="isbn" type="text" placeholder="978-0-00-000000-0" maxlength="32" /></label>
+            <label class="field"><span>Publication year</span><input name="publicationYear" type="number" min="1400" max="2100" placeholder="2025" /></label>
+            <label class="field field-wide"><span>Publisher</span><input name="publisher" type="text" placeholder="Publisher or imprint" maxlength="300" /></label>
+            <label class="field"><span>Edition</span><input name="edition" type="text" placeholder="First edition" maxlength="200" /></label>
+            <label class="field"><span>Language</span><input name="language" type="text" placeholder="English" maxlength="100" /></label>
+            <label class="field field-wide"><span>Description or notes</span><textarea name="description" rows="5" placeholder="Add a synopsis, table of contents, or any context that helps identify the subject..."></textarea></label>
+          </div>
+          <div class="form-actions"><button class="primary-button" type="submit"><span>Generate suggestions</span><span class="button-arrow" aria-hidden="true">→</span></button><span class="form-hint">Powered by Ollama AI</span></div>
+          <div id="form-message" class="form-message" role="alert" hidden></div>
+        </form>
+        <section id="results" class="results" aria-live="polite"><div class="results-empty"><div class="empty-index">02</div><div><span class="step-label">Catalog record</span><h2>Your suggestions will appear here</h2><p>DDC, Cutter, and LCSH recommendations will be organized for a quick professional review.</p></div></div></section>
+      </section>
+    </main>
+    <footer><span>BOOK CATALOG AI by Eden</span><span>ASSISTED CLASSIFICATION · HUMAN REVIEW</span></footer>
+  </body>
+</html>

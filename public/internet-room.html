@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Library internet room workspace" />
+    <title>Internet Room | Library Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/js/internet-room.js" defer></script>
+  </head>
+  <body class="page-enter">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Library workspace home"><span class="brand-mark" aria-hidden="true">B</span><span>Library <em>Workspace</em></span></a>
+      <div class="status-pill"><span class="status-dot"></span> Eden's Workspace</div>
+    </header>
+    <main class="internet-page">
+      <section class="internet-heading"><div><div class="eyebrow">Library operations / 03</div><h1>Internet <span>room.</span></h1><p>Assign an available workstation quickly, then scan the active patron's barcode again when their session ends.</p></div><a class="back-link" href="/">← Dashboard</a></section>
+      <section class="room-overview" aria-label="Internet room status"><div class="overview-number"><strong id="available-count">20</strong><span>Available PCs</span></div><div class="overview-number"><strong id="in-use-count">0</strong><span>In use</span></div><div class="overview-number"><strong>20</strong><span>Total units</span></div><div class="overview-note"><span class="status-dot"></span><span>Room open<br /><small>Sessions are temporary in this workspace</small></span></div></section>
+      <section class="room-actions" aria-labelledby="pc-session-title"><div class="session-intro"><span class="step-label">Session desk</span><h2 id="pc-session-title">Scan to begin</h2><p>Scan a patron barcode. If they are already active, the same scan will end their session.</p></div><form id="session-form" class="session-form"><label class="field barcode-field"><span>Patron barcode</span><input id="barcode-input" name="barcode" autocomplete="off" placeholder="Scan or type barcode" required /></label><label class="field"><span>Available PC</span><select id="pc-select" name="pc" required></select></label><button class="primary-button" type="submit"><span id="session-button-label">Start session</span><span class="button-arrow" aria-hidden="true">→</span></button></form><div id="session-message" class="form-message" role="status" hidden></div></section>
+      <section class="pc-section" aria-labelledby="pc-title"><div class="section-heading"><div><span class="step-label">Room map</span><h2 id="pc-title">Workstations</h2></div><span class="form-hint">Select an available unit above</span></div><div id="pc-grid" class="pc-grid"></div></section>
+      <section class="session-table-panel" aria-labelledby="active-title"><div class="table-toolbar"><div><span class="step-label">Live directory</span><h2 id="active-title">Patrons on session</h2></div><span id="session-count" class="tool-count">0 active sessions</span></div><div class="table-scroll"><table><thead><tr><th>Patron name</th><th>Department</th><th>PC number used</th><th>Time in</th><th>Elapsed time</th></tr></thead><tbody id="session-rows"><tr class="empty-row"><td colspan="5">No patrons are currently using the internet room.</td></tr></tbody></table></div></section>
+    </main>
+    <footer><span>LIBRARY WORKSPACE by Eden</span><span>INTERNET ROOM · SESSION DESK</span></footer>
+  </body>
+</html>
