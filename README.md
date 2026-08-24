@@ -22,12 +22,14 @@ public/
   discussion-room.html      Discussion room reservation interface
   internet-room.html        Internet room PC sessions
   reports.html              Reports workspace placeholder
+  circulation.html          Book check-in and check-out interface
   css/styles.css
   js/catalog.js
   js/patrons.js
   js/patron-registration.js
   js/discussion-room.js
   js/internet-room.js
+  js/circulation.js
   js/page-transition.js
 ```
 
