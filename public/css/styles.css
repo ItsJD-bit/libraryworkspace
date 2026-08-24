@@ -227,3 +227,13 @@ td:first-child { color: var(--ink); font-weight: 700; }
 .aside-count small { color: var(--muted); font-size: 10px; line-height: 1.25; text-transform: uppercase; }
 @media (max-width: 760px) { .registration-heading { align-items: flex-start; flex-direction: column; } .registration-layout { grid-template-columns: 1fr; } .registration-aside { min-height: 230px; } }
 @media (max-width: 520px) { .registration-page { padding: 46px 16px 58px; } .registration-panel, .registration-aside { padding: 22px 18px; } .registration-form { grid-template-columns: 1fr; } .registration-form .barcode-field, .registration-form .primary-button, .barcode-rule { grid-column: span 1; } }
+
+.placeholder-page { position: relative; z-index: 1; max-width: 1230px; margin: 0 auto; padding: clamp(55px, 8vw, 96px) clamp(22px, 5vw, 76px) 100px; }
+.placeholder-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; padding-bottom: 46px; border-bottom: 1px solid rgba(200,219,229,.9); }
+.placeholder-heading h1 { margin-top: 18px; font-size: clamp(45px, 5vw, 68px); }
+.placeholder-heading p { max-width: 500px; margin: 19px 0 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.placeholder-panel { max-width: 650px; margin-top: 38px; padding: clamp(28px, 5vw, 52px); border: 1px solid var(--line); background: rgba(255,255,255,.88); box-shadow: var(--shadow); }
+.placeholder-panel h2 { margin-top: 12px; }
+.placeholder-panel p { max-width: 510px; margin: 16px 0 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.placeholder-button { margin-top: 28px; text-decoration: none; }
+@media (max-width: 600px) { .placeholder-page { padding: 46px 16px 58px; } .placeholder-heading { align-items: flex-start; flex-direction: column; } }

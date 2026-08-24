@@ -21,6 +21,7 @@ public/
   patron-registration.html  Patron registration interface
   discussion-room.html      Discussion room reservation interface
   internet-room.html        Internet room PC sessions
+  reports.html              Reports workspace placeholder
   css/styles.css
   js/catalog.js
   js/patrons.js

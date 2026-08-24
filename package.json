@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
-    "check": "node --check src/server.js && node --check src/catalogPrompt.js"
+    "check": "node --check src/server.js && node --check src/app.js && node --check src/config/environment.js && node --check src/middleware/errorHandler.js && node --check src/routes/catalogRoutes.js && node --check src/routes/healthRoutes.js && node --check src/schemas/catalogSchema.js && node --check src/services/catalogService.js && node --check public/js/catalog.js && node --check public/js/patrons.js && node --check public/js/patron-registration.js && node --check public/js/discussion-room.js && node --check public/js/internet-room.js && node --check public/js/page-transition.js"
   },
   "engines": {
     "node": ">=20"
