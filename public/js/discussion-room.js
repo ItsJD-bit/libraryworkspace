@@ -109,6 +109,9 @@ function openReservationModal(reservationId) {
       <span class="modal-label">Reservation list</span>
       ${membersHtml}
     </div>
+    <div class="modal-actions">
+      <button type="button" class="secondary-button danger-button" data-end-reservation-id="${reservation.id}">End session</button>
+    </div>
   `;
 
   modal.classList.remove('hidden');
@@ -174,6 +177,17 @@ sessionRows.addEventListener('click', (event) => {
 });
 
 document.addEventListener('click', (event) => {
+  const endButton = event.target.closest('[data-end-reservation-id]');
+  if (endButton) {
+    const id = endButton.dataset.endReservationId;
+    const next = load(RESERVATION_KEY).filter((reservation) => reservation.id !== id);
+    save(RESERVATION_KEY, next);
+    closeReservationModal();
+    renderSessions();
+    showMessage('Discussion room session ended successfully.');
+    return;
+  }
+
   const modal = document.querySelector('#reservation-modal');
   if (!modal) return;
   const closeTarget = event.target.closest('[data-close-modal="true"]');

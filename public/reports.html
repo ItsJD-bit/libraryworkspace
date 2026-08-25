@@ -10,10 +10,89 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/styles.css" />
     <script src="/js/page-transition.js" defer></script>
+    <script src="/js/reports.js" defer></script>
   </head>
   <body class="page-enter">
-    <header class="topbar"><a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a><div class="account-menu"><div class="status-pill" tabindex="0" aria-label="Account menu"><span class="status-dot"></span><span>Eden's Workspace</span><span class="caret">?</span></div><div class="account-dropdown" aria-label="Account options"><button type="button" class="dropdown-item">Account</button><button type="button" class="dropdown-item">Admin</button><button type="button" class="dropdown-item danger">Logout</button></div></div></header>
-    <main class="placeholder-page"><section class="placeholder-heading"><div><div class="eyebrow">Library operations / 06</div><h1>Library <span>reports.</span></h1><p>Reporting tools will bring together circulation, cataloging, patron, and room activity.</p></div><a class="back-link" href="/">← Dashboard</a></section><section class="placeholder-panel"><span class="step-label">Coming next</span><h2>Reporting workspace is being prepared</h2><p>This destination is ready for the next module. Your existing cataloging, patron, internet room, and discussion room tools remain available from the dashboard.</p><a class="primary-button placeholder-button" href="/"><span>Return to dashboard</span><span class="button-arrow" aria-hidden="true">→</span></a></section></main>
+    <header class="topbar"><a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a><div class="account-menu"><div class="status-pill" tabindex="0" aria-label="Account menu"><span class="status-dot"></span><span>Eden's Workspace</span><span class="caret">▾</span></div><div class="account-dropdown" aria-label="Account options"><button type="button" class="dropdown-item">Account</button><button type="button" class="dropdown-item">Admin</button><button type="button" class="dropdown-item danger">Logout</button></div></div></header>
+    <main class="reports-page">
+      <section class="reports-heading">
+        <div>
+          <div class="eyebrow">Library operations / 06</div>
+          <h1>Library <span>reports.</span></h1>
+          <p>Review patron usage across all services within a selected date range.</p>
+        </div>
+        <a class="back-link" href="/">← Dashboard</a>
+      </section>
+
+      <section class="report-panel">
+        <form id="report-form" class="report-form">
+          <label class="field">
+            <span>From</span>
+            <input id="date-from" name="startDate" type="date" required />
+          </label>
+          <label class="field">
+            <span>To</span>
+            <input id="date-to" name="endDate" type="date" required />
+          </label>
+          <div class="report-actions">
+            <button id="generate-report" class="primary-button" type="submit"><span>Generate report</span><span class="button-arrow" aria-hidden="true">→</span></button>
+            <button id="export-pdf" class="secondary-button" type="button">Export PDF</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="report-summary-panel">
+        <div class="summary-header">
+          <div>
+            <span class="step-label">Report summary</span>
+            <h2 id="report-range">Selected period</h2>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span class="summary-label">Unique patrons</span>
+            <strong id="unique-patrons">0</strong>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label">Total service uses</span>
+            <strong id="total-uses">0</strong>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label">Circulation</span>
+            <strong id="circulation-uses">0</strong>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label">Internet Room</span>
+            <strong id="internet-uses">0</strong>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label">Discussion Room</span>
+            <strong id="discussion-uses">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="report-table-panel">
+        <div class="table-toolbar">
+          <div><span class="step-label">Service breakdown</span><h2>Usage by service</h2></div>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Usage count</th>
+              </tr>
+            </thead>
+            <tbody id="report-table-body">
+              <tr class="empty-row"><td colspan="2">No report data available.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="report-empty" class="report-empty" hidden>No data found for the selected date range.</div>
+      </section>
+    </main>
     <footer><span>LIBSPACE by Eden</span><span>REPORTS · INSIGHTS · SERVICE</span></footer>
   </body>
 </html>

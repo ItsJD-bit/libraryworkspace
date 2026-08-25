@@ -11,6 +11,7 @@ import databaseRoutes from './routes/databaseRoutes.js';
 import healthRoutes from './routes/healthRoutes.js';
 import internetRoutes from './routes/internetRoutes.js';
 import patronRoutes from './routes/patronRoutes.js';
+import reportRoutes from './routes/reportRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(bookRoutes);
 app.use(circulationRoutes);
 app.use(internetRoutes);
 app.use(patronRoutes);
+app.use(reportRoutes);
 app.use(errorHandler);
 
 export default app;
