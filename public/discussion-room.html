@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Library internet room workspace" />
-    <title>Internet Room | Libspace</title>
+    <meta name="description" content="Library discussion room workspace" />
+    <title>Discussion Room | Libspace</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -15,20 +15,20 @@
   <body class="page-enter">
     <header class="topbar">
       <a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a>
-      <div class="status-pill"><span class="status-dot"></span> Eden's Workspace</div>
+      <div class="account-menu"><div class="status-pill" tabindex="0" aria-label="Account menu"><span class="status-dot"></span><span>Eden's Workspace</span><span class="caret">?</span></div><div class="account-dropdown" aria-label="Account options"><button type="button" class="dropdown-item">Account</button><button type="button" class="dropdown-item">Admin</button><button type="button" class="dropdown-item danger">Logout</button></div></div>
     </header>
 
     <main class="internet-page">
       <section class="internet-heading">
-        <div><div class="eyebrow">Library operations / 03</div><h1>Internet <span>room.</span></h1><p>Assign a workstation quickly, then scan the active patron's barcode again when their session ends.</p></div>
+        <div><div class="eyebrow">Library operations / 03</div><h1>Discussion <span>room.</span></h1><p>Reserve a quiet room for group study, meetings, and collaborative sessions with quick patron check-in.</p></div>
         <a class="back-link" href="/">← Dashboard</a>
       </section>
 
-      <section class="room-overview" aria-label="Internet room status">
-        <div class="overview-number"><strong id="available-count">20</strong><span>Available PCs</span></div>
+      <section class="room-overview" aria-label="Discussion room status">
+        <div class="overview-number"><strong id="available-count">0</strong><span>Available rooms</span></div>
+        <div class="overview-number"><strong id="reservation-count">0</strong><span>Reservations</span></div>
         <div class="overview-number"><strong id="in-use-count">0</strong><span>In use</span></div>
-        <div class="overview-number"><strong>20</strong><span>Total units</span></div>
-        <div class="overview-note"><span class="status-dot"></span><span>Room open<br /><small>Sessions are temporary in this workspace</small></span></div>
+        <div class="overview-note"><span class="status-dot"></span><span>Room open<br /><small>Bookings are coordinated in this workspace</small></span></div>
       </section>
 
       <section class="room-actions discussion-actions" aria-labelledby="session-title">
@@ -54,9 +54,23 @@
 
       <section class="session-table-panel" aria-labelledby="active-title">
         <div class="table-toolbar"><div><span class="step-label">Live directory</span><h2 id="active-title">Current room users</h2></div><span id="session-count" class="tool-count">0 active sessions</span></div>
-        <div class="table-scroll"><table><thead><tr><th>Request master</th><th>Department</th><th>Room</th><th>Date</th><th>Time in</th><th>Elapsed time</th></tr></thead><tbody id="session-rows"><tr class="empty-row"><td colspan="6">No rooms are currently in session.</td></tr></tbody></table></div>
+        <div class="table-scroll"><table><thead><tr><th>Request master</th><th>Department</th><th>Room</th><th>Date</th><th>Time in</th><th>Elapsed time</th><th>Action</th></tr></thead><tbody id="session-rows"><tr class="empty-row"><td colspan="7">No rooms are currently in session.</td></tr></tbody></table></div>
       </section>
     </main>
-    <footer><span>LIBSPACE by Eden</span><span>INTERNET ROOM · SESSION DESK</span></footer>
+
+    <div id="reservation-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal="true"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="reservation-modal-title">
+        <div class="modal-header">
+          <div>
+            <span class="step-label">Reservation details</span>
+            <h3 id="reservation-modal-title">Room reservation</h3>
+          </div>
+          <button type="button" class="modal-close" data-close-modal="true" aria-label="Close reservation details">×</button>
+        </div>
+        <div id="reservation-modal-body" class="modal-body"></div>
+      </div>
+    </div>
+    <footer><span>LIBSPACE by Eden</span><span>DISCUSSION ROOM · RESERVATION DESK</span></footer>
   </body>
 </html>
