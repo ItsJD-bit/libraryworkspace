@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Libspace patron view and barcode scanning desk" />
+    <title>Patron View | Libspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/js/patron-view.js" defer></script>
+  </head>
+  <body class="page-enter">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a>
+      <div class="account-menu"><div class="status-pill" tabindex="0" aria-label="Account menu"><span class="status-dot"></span><span>Eden's Workspace</span><span class="caret">▾</span></div><div class="account-dropdown" aria-label="Account options"><button type="button" class="dropdown-item">Account</button><button type="button" class="dropdown-item">Admin</button><button type="button" class="dropdown-item danger">Logout</button></div></div>
+    </header>
+
+    <main class="patron-view-page full-viewport">
+      <section class="patron-view-header full-width-header">
+        <div>
+          <div class="eyebrow" id="patron-greeting-eyebrow">Good morning / Welcome to the library</div>
+          <h1 id="patron-greeting-title">Good <span id="patron-greeting-text">morning</span>, <span>patron.</span></h1>
+          <p>Quickly scan a library barcode to confirm the patron record at the service desk.</p>
+        </div>
+      </section>
+
+      <section class="patron-view-panel">
+        <div class="patron-scan-card">
+          <div class="scan-header">
+            <span class="step-label">Scan barcode</span>
+            <h2>Patron access desk</h2>
+          </div>
+
+          <form id="patron-scan-form" class="patron-scan-form">
+            <label class="field barcode-field">
+              <span>Barcode</span>
+              <input id="patron-scan-input" name="barcode" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Scan or enter barcode" required />
+            </label>
+            <button type="submit" class="primary-button"><span>Lookup patron</span><span class="button-arrow" aria-hidden="true">→</span></button>
+          </form>
+
+          <div id="scan-message" class="form-message" role="status" hidden></div>
+        </div>
+
+        <aside class="patron-focus-card">
+          <span class="step-label">Current patron</span>
+          <div class="focus-name" id="focus-name">Waiting for scan</div>
+          <div class="focus-meta" id="focus-department">No patron loaded</div>
+          <div class="focus-meta small" id="focus-barcode">Barcode: --</div>
+        </aside>
+      </section>
+    </main>
+
+    <footer><span>LIBSPACE by Eden</span><span>PATRON SERVICE · QUICK LOOKUP</span></footer>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Library attendance monitoring workspace" />
+    <title>Attendance Monitoring | Libspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/js/attendance-monitoring.js" defer></script>
+  </head>
+  <body class="page-enter">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a>
+      <div class="account-menu"><div class="status-pill" tabindex="0" aria-label="Account menu"><span class="status-dot"></span><span>Eden's Workspace</span><span class="caret">▾</span></div><div class="account-dropdown" aria-label="Account options"><button type="button" class="dropdown-item">Account</button><button type="button" class="dropdown-item">Admin</button><button type="button" class="dropdown-item danger">Logout</button></div></div>
+    </header>
+
+    <main class="attendance-page">
+      <section class="internet-heading">
+        <div>
+          <div class="eyebrow">Library operations / 07</div>
+          <h1>Attendance <span>monitoring.</span></h1>
+          <p>Track patrons who check in through barcode scans and review the live flow of visitors at the library.</p>
+        </div>
+        <a class="back-link" href="/">← Dashboard</a>
+      </section>
+
+      <section class="room-overview" aria-label="Attendance summary">
+        <div class="overview-number"><strong id="today-total">0</strong><span>Check-ins today</span></div>
+        <div class="overview-number"><strong id="unique-today">0</strong><span>Patrons seen</span></div>
+        <div class="overview-number"><strong id="last-entry">--:--</strong><span>Latest arrival</span></div>
+        <div class="overview-note"><span class="status-dot"></span><span>Live desk<br /><small>Scans are reflected here as patrons arrive</small></span></div>
+      </section>
+
+      <section class="attendance-actions" aria-labelledby="attendance-title">
+        <div class="session-intro">
+          <span class="step-label">Entry log</span>
+          <h2 id="attendance-title">Log a patron arrival</h2>
+          <p>Use the barcode scanner or type the barcode manually to log a check-in.</p>
+        </div>
+        <div>
+          <form id="attendance-form" class="session-form">
+            <label class="field barcode-field">
+              <span>Patron barcode</span>
+              <input id="attendance-barcode" name="barcode" autocomplete="off" placeholder="Scan or type barcode" required />
+            </label>
+            <button class="primary-button" type="submit"><span>Log arrival</span><span class="button-arrow" aria-hidden="true">→</span></button>
+          </form>
+          <div id="attendance-message" class="form-message" role="status" hidden></div>
+        </div>
+      </section>
+
+      <section class="session-table-panel" aria-labelledby="checkin-title">
+        <div class="table-toolbar">
+          <div><span class="step-label">Live traffic</span><h2 id="checkin-title">Today’s attendance</h2></div>
+          <span id="attendance-count" class="tool-count">0 total check-ins</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Patron</th>
+                <th>Department</th>
+                <th>Barcode</th>
+                <th>Time in</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="attendance-rows">
+              <tr class="empty-row"><td colspan="5">No patrons have checked in yet today.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>LIBSPACE by Eden</span><span>ATTENDANCE · VISITS · ENTRY LOG</span></footer>
+  </body>
+</html>
