@@ -1,39 +1,44 @@
-const STORAGE_KEY = 'library-workspace-patrons';
 const form = document.querySelector('#registration-form');
 const message = document.querySelector('#registration-message');
 const registeredCount = document.querySelector('#registered-count');
 
-const loadPatrons = () => JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-const savePatrons = (patrons) => localStorage.setItem(STORAGE_KEY, JSON.stringify(patrons));
-const normalizeBarcode = (barcode) => barcode.trim().toLowerCase();
-
-function updateCount() {
-  registeredCount.textContent = loadPatrons().length;
+async function loadPatronCount() {
+  try {
+    const response = await fetch('/api/patrons');
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || 'Unable to load patron count');
+    registeredCount.textContent = String(Array.isArray(payload.patrons) ? payload.patrons.length : 0);
+  } catch (error) {
+    registeredCount.textContent = '0';
+    console.error(error);
+  }
 }
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const data = Object.fromEntries(new FormData(form).entries());
-  const patrons = loadPatrons();
-  const barcodeExists = patrons.some((patron) => normalizeBarcode(patron.barcode) === normalizeBarcode(data.barcode));
 
-  if (barcodeExists) {
-    message.textContent = 'This barcode is already registered. Use a different barcode.';
+  try {
+    const response = await fetch('/api/patrons', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || 'Unable to register patron');
+
+    form.reset();
+    message.textContent = 'Patron registered successfully.';
+    message.classList.remove('form-message-error');
+    message.hidden = false;
+    await loadPatronCount();
+  } catch (error) {
+    message.textContent = error.message;
     message.classList.add('form-message-error');
     message.hidden = false;
-    form.elements.barcode.focus();
-    return;
+    form.elements.barcode?.focus();
   }
-
-  const nextId = patrons.reduce((highest, patron) => Math.max(highest, Number(patron.id) || 0), 0) + 1;
-  patrons.push({ id: nextId, ...data });
-  savePatrons(patrons);
-  form.reset();
-  message.textContent = 'Patron registered successfully.';
-  message.classList.remove('form-message-error');
-  message.hidden = false;
-  updateCount();
 });
 
-window.addEventListener('storage', updateCount);
-updateCount();
+loadPatronCount();

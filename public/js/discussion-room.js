@@ -1,5 +1,4 @@
 const RESERVATION_KEY = 'library-workspace-discussion-reservations';
-const PATRON_KEY = 'library-workspace-patrons';
 const form = document.querySelector('#session-form');
 const reservationForm = document.querySelector('#reservation-form');
 const barcodeInput = document.querySelector('#barcode-input');
@@ -10,17 +9,31 @@ const sessionMessage = document.querySelector('#session-message');
 const sessionCount = document.querySelector('#session-count');
 const dateInput = document.querySelector('#date-input');
 let group = [];
+let patrons = [];
 
 const load = (key) => JSON.parse(localStorage.getItem(key) || '[]');
 const save = (key, value) => localStorage.setItem(key, JSON.stringify(value));
-const normalize = (value) => value.trim().toLowerCase();
+const normalize = (value) => String(value ?? '').trim().toLowerCase();
 const today = new Date();
 const toDateValue = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 const displayName = (patron) => patron ? `${patron.first_name} ${patron.last_name}` : 'Unregistered patron';
 const escapeHtml = (value = '') => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
 
+async function loadPatrons() {
+  try {
+    const response = await fetch('/api/patrons');
+    const payload = await response.json();
+    patrons = Array.isArray(payload.patrons) ? payload.patrons : [];
+    return patrons;
+  } catch (error) {
+    console.error('Unable to load patrons for discussion room:', error);
+    patrons = [];
+    return [];
+  }
+}
+
 function patronForBarcode(barcode) {
-  return load(PATRON_KEY).find((patron) => normalize(patron.barcode) === normalize(barcode));
+  return patrons.find((patron) => normalize(patron.barcode) === normalize(barcode));
 }
 
 function showMessage(text, error = false) {
@@ -74,11 +87,18 @@ function elapsed(start) {
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const barcode = barcodeInput.value.trim();
-  if (!barcode) return;
+  if (!barcode) return showMessage('Scan or type a patron barcode first.', true);
   if (group.some((member) => normalize(member.barcode) === normalize(barcode))) return showMessage('That barcode is already in this group.', true);
   if (group.length >= 8) return showMessage('A discussion room can hold a maximum of 8 patrons.', true);
+
   const patron = patronForBarcode(barcode);
-  group.push({ barcode, name: patron ? displayName(patron) : `Patron ${barcode}` });
+  if (!patron) {
+    showMessage('Patron not found. Please register the patron first or scan a valid barcode.', true);
+    barcodeInput.focus();
+    return;
+  }
+
+  group.push({ barcode, name: displayName(patron) });
   barcodeInput.value = '';
   showMessage(group.length === 1 ? `${group[0].name} is the request master.` : 'Patron added to the lobby group.');
   renderLobby();
@@ -111,5 +131,6 @@ reservationForm.addEventListener('submit', (event) => {
 dateInput.min = toDateValue(today);
 dateInput.value = toDateValue(today);
 window.setInterval(renderSessions, 1000);
+loadPatrons();
 renderLobby();
 renderSessions();

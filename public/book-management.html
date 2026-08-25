@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Library book management workspace" />
+    <title>Book Management | Libspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/js/book-management.js" defer></script>
+  </head>
+  <body class="page-enter">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a>
+      <div class="status-pill"><span class="status-dot"></span> Eden's Workspace</div>
+    </header>
+
+    <main class="patrons-page">
+      <section class="patrons-heading">
+        <div>
+          <div class="eyebrow">Library operations / 08</div>
+          <h1>Book <span>management.</span></h1>
+          <p>Catalog new acquisitions, review standard metadata, archive inactive records, and manage copies by barcode.</p>
+        </div>
+        <a class="back-link" href="/">← Dashboard</a>
+      </section>
+
+      <section class="patron-form-panel" aria-labelledby="book-form-title">
+        <div class="table-toolbar">
+          <div>
+            <span class="step-label">Collection desk</span>
+            <h2 id="book-form-title">Add a book</h2>
+          </div>
+        </div>
+
+        <form id="book-form" class="patron-form">
+          <label class="field"><span>Barcode</span><input name="barcode" type="text" placeholder="e.g. BK-1001" /></label>
+          <label class="field"><span>Title <b>*</b></span><input name="title" type="text" placeholder="Book title" required /></label>
+          <label class="field"><span>Author <b>*</b></span><input name="author" type="text" placeholder="Author name" required /></label>
+          <label class="field"><span>Subtitle</span><input name="subtitle" type="text" placeholder="Subtitle" /></label>
+
+          <label class="field"><span>Illustrator</span><input name="illustrator" type="text" placeholder="Illustrator" /></label>
+          <label class="field"><span>Edition</span><input name="edition" type="text" placeholder="First edition" /></label>
+          <label class="field"><span>Publisher</span><input name="publisher" type="text" placeholder="Publisher" /></label>
+          <label class="field"><span>Publication year</span><input name="publication_year" type="number" min="1400" max="2100" placeholder="2025" /></label>
+
+          <label class="field"><span>ISBN</span><input name="isbn" type="text" placeholder="978-0-000000-00-0" /></label>
+          <label class="field"><span>ISBN-13</span><input name="isbn_13" type="text" placeholder="9780000000000" /></label>
+          <label class="field"><span>Language</span><input name="language" type="text" placeholder="English" /></label>
+          <label class="field"><span>Format</span><input name="format" type="text" placeholder="Hardcover, Paperback" /></label>
+
+          <label class="field"><span>Genre</span><input name="genre" type="text" placeholder="Fiction, History" /></label>
+          <label class="field"><span>Pages</span><input name="pages" type="number" min="1" placeholder="250" /></label>
+          <label class="field"><span>Location</span><input name="location" type="text" placeholder="FIC / 001" /></label>
+          <label class="field"><span>Condition</span><input name="condition" type="text" placeholder="New, Good, Damaged" /></label>
+
+          <label class="field"><span>Collection type</span>
+            <select name="collection_type">
+              <option value="circulation">Circulation</option>
+              <option value="filipiniana">Filipiniana</option>
+              <option value="reference">Reference</option>
+            </select>
+          </label>
+          <label class="field"><span>DDC</span><input name="ddc" type="text" placeholder="813.54" /></label>
+          <label class="field"><span>Cutter</span><input name="cutter" type="text" placeholder="M1234" /></label>
+          <label class="field"><span>Subject</span><input name="subject" type="text" placeholder="Science fiction" /></label>
+          <label class="field"><span>Price</span><input name="price" type="number" min="0" step="0.01" placeholder="0.00" /></label>
+
+          <label class="field field-wide"><span>Description</span><textarea name="description" rows="4" placeholder="Brief summary, note, or acquisition context"></textarea></label>
+          <label class="field field-wide"><span>Notes</span><textarea name="notes" rows="3" placeholder="Cataloging notes, binding notes, or staff remarks"></textarea></label>
+
+          <button class="primary-button" type="submit"><span>Add book</span><span class="button-arrow" aria-hidden="true">→</span></button>
+        </form>
+        <div id="book-message" class="form-message" role="status" hidden></div>
+      </section>
+
+      <section class="book-detail-panel" id="book-detail-panel" hidden>
+        <div class="table-toolbar">
+          <div>
+            <span class="step-label">Record</span>
+            <h2>Selected book info</h2>
+          </div>
+        </div>
+        <div id="book-detail-content" class="book-detail-content"></div>
+      </section>
+
+      <section class="patron-table-panel" aria-labelledby="book-table-title">
+        <div class="table-toolbar">
+          <div>
+            <span class="step-label">Inventory</span>
+            <h2 id="book-table-title">Book directory</h2>
+          </div>
+          <label class="search-field">
+            <span>Search books</span>
+            <input id="book-search" type="search" placeholder="Title, author, barcode, ISBN" />
+          </label>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Barcode</th>
+                <th>DDC</th>
+                <th>Status</th>
+                <th>View</th>
+                <th>Archive</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody id="book-rows"><tr class="empty-row"><td colspan="8">No books have been added yet.</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer><span>LIBSPACE by Eden</span><span>BOOK MANAGEMENT</span></footer>
+  </body>
+</html>

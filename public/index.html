@@ -4,16 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Library operations workspace" />
-    <title>Library Workspace</title>
+    <title>Libspace</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/styles.css" />
     <script src="/js/page-transition.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const now = new Date();
+        const hour = now.getHours();
+        const greeting = document.getElementById('greeting-text');
+        const day = document.getElementById('date-day');
+        const full = document.getElementById('date-full');
+
+        if (greeting) {
+          greeting.textContent = hour < 12 ? 'morning' : 'afternoon';
+        }
+
+        if (day && full) {
+          const dayNumber = now.getDate();
+          const monthName = now.toLocaleDateString(undefined, { month: 'long' });
+          const year = now.getFullYear();
+          day.textContent = String(dayNumber);
+          full.textContent = `${monthName} ${year}`;
+        }
+      });
+    </script>
   </head>
   <body class="dashboard-page page-enter">
     <header class="topbar">
-      <a class="brand" href="/" aria-label="Library workspace home"><span class="brand-mark" aria-hidden="true">B</span><span>Library <em>Workspace</em></span></a>
+      <a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a>
       <div class="status-pill"><span class="status-dot"></span> Eden's Workspace</div>
     </header>
 
@@ -21,10 +42,10 @@
       <section class="dashboard-welcome" aria-labelledby="dashboard-title">
         <div>
           <div class="eyebrow">Library operations / Home</div>
-          <h1 id="dashboard-title">Good morning, <span>Eden.</span></h1>
+          <h1 id="dashboard-title">Good <span id="greeting-text">morning</span>, <span>Eden.</span></h1>
           <p>Everything you need to keep the library moving, in one quiet workspace.</p>
         </div>
-        <div class="date-block"><strong>24</strong><span>August 2026</span></div>
+        <div class="date-block"><strong id="date-day">24</strong><span id="date-full">August 2026</span></div>
       </section>
 
       <section class="tool-section" aria-labelledby="tools-title">
@@ -39,12 +60,13 @@
           <a class="tool-card tool-card-secondary" href="/patron-registration.html"><div class="tool-icon icon-add" aria-hidden="true">+</div><div class="tool-card-body"><span class="tool-status active">Active now</span><h3>Patron Registration</h3><p>Register new patrons and issue library access cards.</p><span class="tool-link">Register a patron <b>→</b></span></div></a>
           <a class="tool-card tool-card-secondary" href="/discussion-room.html"><div class="tool-icon icon-chat" aria-hidden="true">D</div><div class="tool-card-body"><span class="tool-status active">Active now</span><h3>Discussion Room</h3><p>Manage group reservations and live room sessions.</p><span class="tool-link">Open discussion rooms <b>→</b></span></div></a>
           <a class="tool-card tool-card-secondary" href="/circulation.html"><div class="tool-icon icon-circulation" aria-hidden="true">↔</div><div class="tool-card-body"><span class="tool-status active">Active now</span><h3>Book Circulation</h3><p>Check books in and out at the service desk.</p><span class="tool-link">Open circulation desk <b>→</b></span></div></a>
+          <a class="tool-card tool-card-secondary" href="/book-management.html"><div class="tool-icon icon-book" aria-hidden="true">M</div><div class="tool-card-body"><span class="tool-status active">New</span><h3>Book Management</h3><p>Add, archive, restore, and remove book records with standard metadata.</p><span class="tool-link">Open book management <b>→</b></span></div></a>
           <a class="tool-card" href="/reports.html"><div class="tool-icon icon-chart" aria-hidden="true">R</div><div class="tool-card-body"><span class="tool-status">Coming next</span><h3>Reports</h3><p>Understand circulation, cataloging, and room usage.</p><span class="tool-link">View tool <b>→</b></span></div></a>
         </div>
       </section>
 
       <section class="dashboard-note"><span class="note-icon" aria-hidden="true">i</span><span>More library tools will appear here as they become ready for use.</span></section>
     </main>
-    <footer><span>LIBRARY WORKSPACE by Eden</span><span>OPERATIONS · SERVICE · DISCOVERY</span></footer>
+    <footer><span>LIBSPACE by Eden</span><span>OPERATIONS · SERVICE · DISCOVERY</span></footer>
   </body>
 </html>
