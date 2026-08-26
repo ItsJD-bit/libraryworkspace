@@ -16,6 +16,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "ejs": "^6.0.1",
     "express": "^4.21.2",
     "helmet": "^8.0.0",
     "openai": "^4.77.0",

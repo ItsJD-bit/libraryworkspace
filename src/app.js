@@ -16,11 +16,25 @@ import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
 const publicDirectory = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'public');
+const viewsDirectory = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'views');
 
+app.set('view engine', 'ejs');
+app.set('views', viewsDirectory);
 app.use(helmet());
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 app.use(express.static(publicDirectory));
+app.get('/', (request, response) => response.render('index'));
+app.get(['/attendance-monitoring', '/attendance-monitoring.html'], (request, response) => response.render('attendance-monitoring'));
+app.get(['/book-management', '/book-management.html'], (request, response) => response.render('book-management'));
+app.get(['/catalog', '/catalog.html'], (request, response) => response.render('catalog'));
+app.get(['/circulation', '/circulation.html'], (request, response) => response.render('circulation'));
+app.get(['/discussion-room', '/discussion-room.html'], (request, response) => response.render('discussion-room'));
+app.get(['/internet-room', '/internet-room.html'], (request, response) => response.render('internet-room'));
+app.get(['/patron-registration', '/patron-registration.html'], (request, response) => response.render('patron-registration'));
+app.get(['/patron-view', '/patron-view.html'], (request, response) => response.render('patron-view'));
+app.get(['/patrons', '/patrons.html'], (request, response) => response.render('patrons'));
+app.get(['/reports', '/reports.html'], (request, response) => response.render('reports'));
 app.use(healthRoutes);
 app.use(databaseRoutes);
 app.use(catalogRoutes);

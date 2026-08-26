@@ -1,7 +1,9 @@
 import 'dotenv/config';
 import app from './app.js';
+import { initializeDatabase } from './db/init.js';
 import { ensureBookCirculationSchema, ensureInternetSessionSchema } from './db/pool.js';
 import { environment } from './config/environment.js';
+
 
 const startPort = Number.isInteger(environment.port) && environment.port > 0 ? environment.port : 3000;
 
@@ -37,6 +39,13 @@ async function startServer() {
   }
 }
 
+const databaseInitialized = await initializeDatabase();
+
+if (!databaseInitialized) {
+  throw new Error('Database schema initialization failed. Server cannot start.');
+}
+
 await ensureInternetSessionSchema();
 await ensureBookCirculationSchema();
 await startServer();
+

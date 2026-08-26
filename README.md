@@ -15,14 +15,6 @@ src/
   schemas/catalogSchema.js  Request and AI response contracts
   services/catalogService.js AI provider integrations
 public/
-  index.html                Library dashboard
-  catalog.html              Book Catalog AI tool
-  patrons.html              Patron records interface
-  patron-registration.html  Patron registration interface
-  discussion-room.html      Discussion room reservation interface
-  internet-room.html        Internet room PC sessions
-  reports.html              Reports workspace placeholder
-  circulation.html          Book check-in and check-out interface
   css/styles.css
   js/catalog.js
   js/patrons.js
@@ -31,6 +23,8 @@ public/
   js/internet-room.js
   js/circulation.js
   js/page-transition.js
+views/
+  *.ejs                          Server-rendered page views
 ```
 
 ## Requirements
@@ -98,3 +92,5 @@ These are recommendations, not authoritative catalog records. Validate them agai
 ```powershell
 npm run check
 ```
+
+Express renders the pages from `views/` using EJS. Start the application with `npm run dev` or `npm start`, then open the displayed network URL from another device on the same network.
