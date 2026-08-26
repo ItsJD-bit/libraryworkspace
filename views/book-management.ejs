@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <script src="/js/page-transition.js" defer></script>
     <script src="/js/book-management.js" defer></script>
+    <script src="/js/account-menu.js" defer></script>
   </head>
   <body class="page-enter">
     <header class="topbar">
       <a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a>
-      <div class="account-menu"><div class="status-pill" tabindex="0" aria-label="Account menu"><span class="status-dot"></span><span>Eden's Workspace</span><span class="caret">?</span></div><div class="account-dropdown" aria-label="Account options"><button type="button" class="dropdown-item">Account</button><button type="button" class="dropdown-item">Admin</button><button type="button" class="dropdown-item danger">Logout</button></div></div>
+      <div class="account-menu"><div class="status-pill" tabindex="0" aria-label="Account menu"><span class="status-dot"></span><span><%= locals.account?.name || 'Library Workspace' %></span><span class="caret">▾</span></div><div class="account-dropdown" aria-label="Account options"><button type="button" class="dropdown-item">Account</button><button type="button" class="dropdown-item">Admin</button><button type="button" class="dropdown-item danger">Logout</button></div></div>
     </header>
 
     <main class="patrons-page">

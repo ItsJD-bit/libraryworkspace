@@ -8,16 +8,18 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
-    "check": "node --check src/server.js && node --check src/app.js && node --check src/config/environment.js && node --check src/middleware/errorHandler.js && node --check src/routes/catalogRoutes.js && node --check src/routes/healthRoutes.js && node --check src/routes/internetRoutes.js && node --check src/routes/patronRoutes.js && node --check src/schemas/catalogSchema.js && node --check src/services/catalogService.js && node --check src/services/internetService.js && node --check src/services/patronService.js && node --check src/db/pool.js && node --check public/js/catalog.js && node --check public/js/patrons.js && node --check public/js/patron-registration.js && node --check public/js/discussion-room.js && node --check public/js/internet-room.js && node --check public/js/page-transition.js"
+    "check": "node --check src/server.js && node --check src/app.js && node --check src/config/environment.js && node --check src/middleware/errorHandler.js && node --check src/middleware/requireAdmin.js && node --check src/routes/accountRoutes.js && node --check src/routes/catalogRoutes.js && node --check src/routes/healthRoutes.js && node --check src/routes/internetRoutes.js && node --check src/routes/patronRoutes.js && node --check src/schemas/catalogSchema.js && node --check src/services/catalogService.js && node --check src/services/internetService.js && node --check src/services/patronService.js && node --check src/db/init.js && node --check src/db/pool.js && node --check public/js/admin-login.js && node --check public/js/account-menu.js && node --check public/js/account-manager.js && node --check public/js/catalog.js && node --check public/js/patrons.js && node --check public/js/patron-registration.js && node --check public/js/discussion-room.js && node --check public/js/internet-room.js && node --check public/js/page-transition.js"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "ejs": "^6.0.1",
     "express": "^4.21.2",
+    "express-session": "^1.19.0",
     "helmet": "^8.0.0",
     "openai": "^4.77.0",
     "pg": "^8.23.0",

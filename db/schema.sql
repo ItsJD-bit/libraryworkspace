@@ -1,6 +1,15 @@
 -- PostgreSQL schema starter for the library workspace project.
 -- Add tables here as the application grows.
 
+CREATE TABLE IF NOT EXISTS accounts (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  username VARCHAR(100) UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role VARCHAR(30) NOT NULL DEFAULT 'admin' CHECK (role = 'admin'),
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE IF NOT EXISTS patrons (
   id SERIAL PRIMARY KEY,
   barcode VARCHAR(100) UNIQUE NOT NULL,

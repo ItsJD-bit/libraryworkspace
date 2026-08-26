@@ -39,6 +39,8 @@ npm install
 Copy-Item .env.example .env
 ```
 
+Set `ADMIN_NAME`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`, and `SESSION_SECRET` in `.env` before the first start. The first administrator is created automatically, passwords are stored as bcrypt hashes, and `/account-manager` requires an authenticated administrator session.
+
 For the free local setup, leave `AI_PROVIDER=ollama` in `.env`. Install Ollama from [ollama.com/download](https://ollama.com/download), then download the model:
 
 ```powershell

@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <script src="/js/page-transition.js" defer></script>
     <script src="/js/circulation.js" defer></script>
+    <script src="/js/account-menu.js" defer></script>
   </head>
   <body class="page-enter">
-    <header class="topbar"><a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a><div class="account-menu"><div class="status-pill" tabindex="0" aria-label="Account menu"><span class="status-dot"></span><span>Eden's Workspace</span><span class="caret">?</span></div><div class="account-dropdown" aria-label="Account options"><button type="button" class="dropdown-item">Account</button><button type="button" class="dropdown-item">Admin</button><button type="button" class="dropdown-item danger">Logout</button></div></div></header>
+    <header class="topbar"><a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a><div class="account-menu"><div class="status-pill" tabindex="0" aria-label="Account menu"><span class="status-dot"></span><span><%= locals.account?.name || 'Library Workspace' %></span><span class="caret">▾</span></div><div class="account-dropdown" aria-label="Account options"><button type="button" class="dropdown-item">Account</button><button type="button" class="dropdown-item">Admin</button><button type="button" class="dropdown-item danger">Logout</button></div></div></header>
     <main class="circulation-page">
       <section class="circulation-heading"><div><div class="eyebrow">Library operations / 07</div><h1>Book <span>circulation.</span></h1><p>Check books in and out quickly with two scans at the service desk.</p></div><a class="back-link" href="/">← Dashboard</a></section>
       <section class="circulation-stats" aria-label="Circulation summary"><div class="overview-number"><strong id="available-books">5</strong><span>Available books</span></div><div class="overview-number"><strong id="borrowed-books">0</strong><span>Books on loan</span></div><div class="overview-number"><strong id="total-books">5</strong><span>Cataloged titles</span></div><div class="overview-note"><span class="status-dot"></span><span>Circulation desk open<br /><small>Scan book first, then patron</small></span></div></section>
