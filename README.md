@@ -96,3 +96,9 @@ npm run check
 ```
 
 Express renders the pages from `views/` using EJS. Start the application with `npm run dev` or `npm start`, then open the displayed network URL from another device on the same network.
+
+fisrt evaluation held 8/26/28
+
+things to consider in the future update
+-when the barcode scanned, the patron will able to choose where to use service upon scanning the barcode
+
