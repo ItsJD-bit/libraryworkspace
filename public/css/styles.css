@@ -352,27 +352,70 @@ td:first-child { color: var(--ink); font-weight: 700; }
 .modal {
   position: fixed;
   inset: 0;
+  z-index: 50;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
+
+  padding: 16px;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity .25s ease,
+    visibility .25s ease;
 }
-.modal.hidden { display: none; }
+.modal.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .modal-backdrop {
   position: absolute;
   inset: 0;
+
   background: rgba(13, 33, 45, 0.38);
+
+  opacity: 1;
+
+  transition:
+    opacity .25s ease;
 }
+
+.modal.hidden .modal-card {
+  opacity: 0;
+  transform: translateY(12px) scale(.97);
+}
+
+.modal.hidden .modal-backdrop {
+  opacity: 0;
+}
+
 .modal-card {
   position: relative;
+
   width: min(540px, calc(100vw - 32px));
   max-height: 80vh;
+
   overflow: auto;
+
   padding: 24px;
+
   border: 1px solid var(--line);
   border-radius: 18px;
+
   background: rgba(255,255,255,.98);
   box-shadow: var(--shadow);
+
+  opacity: 1;
+  transform: translateY(0) scale(1);
+
+  transition:
+    opacity .3s cubic-bezier(.22, 1, .36, 1),
+    transform .3s cubic-bezier(.22, 1, .36, 1);
 }
 .modal-header {
   display: flex;
@@ -482,7 +525,7 @@ td:first-child { color: var(--ink); font-weight: 700; }
 @media (max-width: 760px) { .registration-heading { align-items: flex-start; flex-direction: column; } .registration-layout { grid-template-columns: 1fr; } .registration-aside { min-height: 230px; } }
 @media (max-width: 520px) { .registration-page { padding: 46px 16px 58px; } .registration-panel, .registration-aside { padding: 22px 18px; } .registration-form { grid-template-columns: 1fr; } .registration-form .barcode-field, .registration-form .primary-button, .barcode-rule { grid-column: span 1; } }
 
-.patron-view-page { position: relative; z-index: 1; width: 100%; min-height: calc(100vh - 78px); margin: 0; padding: clamp(30px, 4vw, 42px) clamp(22px, 4vw, 52px) 38px; }
+.patron-view-page { position: relative; z-index: 1; width: 100%; min-height: calc(100vh - 20px); margin: 0; padding: clamp(30px, 4vw, 42px) clamp(22px, 4vw, 52px) 38px; }
 .patron-view-page.full-viewport { max-width: none; }
 .patron-view-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; padding-bottom: 30px; border-bottom: 1px solid rgba(200,219,229,.9); }
 .patron-view-header.full-width-header { width: 100%; }
@@ -560,3 +603,234 @@ td:first-child { color: var(--ink); font-weight: 700; }
 .placeholder-panel p { max-width: 510px; margin: 16px 0 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
 .placeholder-button { margin-top: 28px; text-decoration: none; }
 @media (max-width: 600px) { .placeholder-page { padding: 46px 16px 58px; } .placeholder-heading { align-items: flex-start; flex-direction: column; } }
+
+/* ============================================================
+   PATRON SERVICE SELECTION MODAL
+   ============================================================ */
+
+.service-modal-card {
+  width: min(760px, calc(100vw - 32px));
+  max-height: min(760px, calc(100vh - 40px));
+  padding: clamp(24px, 4vw, 38px);
+}
+
+.service-modal-card .modal-header {
+  margin-bottom: 27px;
+}
+
+.service-modal-card .modal-header h3 {
+  max-width: 520px;
+  margin: 9px 0 0;
+  color: var(--ink);
+  font: 600 clamp(27px, 4vw, 36px) 'Space Grotesk', sans-serif;
+  letter-spacing: -.04em;
+  line-height: 1.05;
+}
+
+.service-modal-subtitle {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.service-modal-subtitle strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+
+/* ------------------------------------------------------------
+   SERVICE GRID
+   ------------------------------------------------------------ */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+
+/* ------------------------------------------------------------
+   SERVICE CARD
+   ------------------------------------------------------------ */
+
+.service-card {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  min-height: 92px;
+  padding: 14px;
+
+  border: 1px solid var(--line);
+  border-radius: 2px;
+
+  color: var(--ink);
+  background: rgba(255, 255, 255, .86);
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
+}
+
+.service-card:hover,
+.service-card:focus-visible {
+  border-color: #8fbcd0;
+  background: white;
+  box-shadow: 0 10px 22px rgba(35, 93, 123, .10);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.service-card:active {
+  transform: translateY(0) scale(.99);
+}
+
+
+/* ------------------------------------------------------------
+   SERVICE ICON
+   ------------------------------------------------------------ */
+
+.service-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+
+  border-radius: 9px;
+
+  color: var(--green-dark);
+  background: var(--mint);
+
+  font: 700 17px 'Space Grotesk', sans-serif;
+}
+
+
+/* ------------------------------------------------------------
+   SERVICE TEXT
+   ------------------------------------------------------------ */
+
+.service-content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.service-content strong {
+  color: var(--ink);
+  font: 600 15px 'Space Grotesk', sans-serif;
+  letter-spacing: -.025em;
+}
+
+.service-content small {
+  color: var(--muted);
+  font: 11px/1.45 'DM Sans', sans-serif;
+}
+
+
+/* ------------------------------------------------------------
+   SERVICE ARROW
+   ------------------------------------------------------------ */
+
+.service-arrow {
+  color: var(--green);
+  font-size: 18px;
+
+  transition:
+    transform .2s ease,
+    color .2s ease;
+}
+
+.service-card:hover .service-arrow,
+.service-card:focus-visible .service-arrow {
+  color: var(--green-dark);
+  transform: translateX(3px);
+}
+
+
+/* ------------------------------------------------------------
+   WIDE SERVICE
+   ------------------------------------------------------------ */
+
+.service-card-wide {
+  grid-column: span 2;
+}
+
+
+/* ------------------------------------------------------------
+   MODAL FOOTER
+   ------------------------------------------------------------ */
+
+.service-modal-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 22px;
+  padding-top: 17px;
+
+  border-top: 1px solid var(--line);
+
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.service-modal-footer .note-icon {
+  flex: 0 0 20px;
+}
+
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media (max-width: 600px) {
+
+  .service-modal-card {
+    width: min(100%, calc(100vw - 24px));
+    padding: 22px 18px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card-wide {
+    grid-column: span 1;
+  }
+
+  .service-card {
+    min-height: 82px;
+  }
+
+}
+
+@media (max-width: 400px) {
+
+  .service-card {
+    grid-template-columns: 38px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .service-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .service-content strong {
+    font-size: 14px;
+  }
+
+  .service-content small {
+    font-size: 10px;
+  }
+
+}

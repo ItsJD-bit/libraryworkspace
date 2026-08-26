@@ -81,22 +81,27 @@ function renderSummary() {
 }
 
 function renderRows() {
-  const todayEntries = getTodaysEntries().sort((a, b) => new Date(b.checkedInAt) - new Date(a.checkedInAt));
+  const todayEntries = getTodaysEntries().sort(
+    (a, b) => new Date(b.checkedInAt) - new Date(a.checkedInAt)
+  );
 
   if (!todayEntries.length) {
-    attendanceRows.innerHTML = '<tr class="empty-row"><td colspan="5">No patrons have checked in yet today.</td></tr>';
+    attendanceRows.innerHTML =
+      '<tr class="empty-row"><td colspan="6">No patrons have checked in yet today.</td></tr>';
     return;
   }
 
   attendanceRows.innerHTML = todayEntries.map((entry) => {
     const patron = patronByBarcode(entry.barcode);
+
     return `
       <tr>
         <td><strong>${entry.name || displayName(patron)}</strong></td>
         <td>${entry.department || patron?.department || 'Not assigned'}</td>
         <td>${entry.barcode}</td>
+        <td>${entry.service || 'Not selected'}</td>
         <td>${formatTime(entry.checkedInAt)}</td>
-        <td><span class="detail-pill">Checked in</span></td>
+        <td><span class="detail-pill">${entry.status || 'Checked in'}</span></td>
       </tr>
     `;
   }).join('');

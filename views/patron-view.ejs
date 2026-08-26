@@ -51,6 +51,192 @@
       </section>
     </main>
 
+    <!-- Patron Service Selection Modal -->
+<div
+  id="service-modal"
+  class="modal hidden"
+  aria-hidden="true"
+>
+  <div
+    class="modal-backdrop"
+    data-close-service-modal
+    aria-hidden="true"
+  ></div>
+
+  <section
+    class="modal-card patron-modal-card service-modal-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="service-modal-title"
+  >
+    <header class="modal-header">
+
+      <div>
+        <span class="step-label">
+          Library services
+        </span>
+
+        <h3 id="service-modal-title">
+          How can we assist you?
+        </h3>
+
+        <p class="service-modal-subtitle">
+          Welcome,
+          <strong id="service-patron-name">
+            patron
+          </strong>.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="modal-close"
+        data-close-service-modal
+        aria-label="Close service selection"
+      >
+        &times;
+      </button>
+
+    </header>
+
+    <div class="service-grid">
+
+      <button
+        type="button"
+        class="service-card"
+        data-service="printing"
+      >
+        <span class="service-icon">P</span>
+
+        <span class="service-content">
+          <strong>Printing Services</strong>
+          <small>
+            Print documents and other library materials.
+          </small>
+        </span>
+
+        <span class="service-arrow">→</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="service-card"
+        data-service="internet"
+      >
+        <span class="service-icon">I</span>
+
+        <span class="service-content">
+          <strong>Internet Room</strong>
+          <small>
+            Use an available library computer.
+          </small>
+        </span>
+
+        <span class="service-arrow">→</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="service-card"
+        data-service="circulation"
+      >
+        <span class="service-icon">C</span>
+
+        <span class="service-content">
+          <strong>Library Circulation</strong>
+          <small>
+            Borrow, return, or renew library materials.
+          </small>
+        </span>
+
+        <span class="service-arrow">→</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="service-card"
+        data-service="research"
+      >
+        <span class="service-icon">R</span>
+
+        <span class="service-content">
+          <strong>Undergraduate Research</strong>
+          <small>
+            Research assistance and library resources.
+          </small>
+        </span>
+
+        <span class="service-arrow">→</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="service-card"
+        data-service="periodicals"
+      >
+        <span class="service-icon">P</span>
+
+        <span class="service-content">
+          <strong>Periodicals Reading Area</strong>
+          <small>
+            Access journals, newspapers, and periodicals.
+          </small>
+        </span>
+
+        <span class="service-arrow">→</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="service-card"
+        data-service="discussion"
+      >
+        <span class="service-icon">D</span>
+
+        <span class="service-content">
+          <strong>Discussion Room</strong>
+          <small>
+            Reserve or join a discussion room.
+          </small>
+        </span>
+
+        <span class="service-arrow">→</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="service-card service-card-wide"
+        data-service="consultation"
+      >
+        <span class="service-icon">L</span>
+
+        <span class="service-content">
+          <strong>Librarian's Consultation</strong>
+          <small>
+            Speak with a librarian for personalized assistance.
+          </small>
+        </span>
+
+        <span class="service-arrow">→</span>
+      </button>
+
+    </div>
+
+    <div class="service-modal-footer">
+      <span class="note-icon">i</span>
+      <span>Select a service to continue.</span>
+    </div>
+
+  </section>
+</div>
+
+
     <footer><span>LIBSPACE by Eden</span><span>PATRON SERVICE · QUICK LOOKUP</span></footer>
   </body>
 </html>

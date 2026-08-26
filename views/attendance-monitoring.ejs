@@ -36,23 +36,6 @@
         <div class="overview-note"><span class="status-dot"></span><span>Live desk<br /><small>Scans are reflected here as patrons arrive</small></span></div>
       </section>
 
-      <section class="attendance-actions" aria-labelledby="attendance-title">
-        <div class="session-intro">
-          <span class="step-label">Entry log</span>
-          <h2 id="attendance-title">Log a patron arrival</h2>
-          <p>Use the barcode scanner or type the barcode manually to log a check-in.</p>
-        </div>
-        <div>
-          <form id="attendance-form" class="session-form">
-            <label class="field barcode-field">
-              <span>Patron barcode</span>
-              <input id="attendance-barcode" name="barcode" autocomplete="off" placeholder="Scan or type barcode" required />
-            </label>
-            <button class="primary-button" type="submit"><span>Log arrival</span><span class="button-arrow" aria-hidden="true">→</span></button>
-          </form>
-          <div id="attendance-message" class="form-message" role="status" hidden></div>
-        </div>
-      </section>
 
       <section class="session-table-panel" aria-labelledby="checkin-title">
         <div class="table-toolbar">
@@ -66,12 +49,15 @@
                 <th>Patron</th>
                 <th>Department</th>
                 <th>Barcode</th>
+                <th>Service</th>
                 <th>Time in</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody id="attendance-rows">
-              <tr class="empty-row"><td colspan="5">No patrons have checked in yet today.</td></tr>
+              <tr class="empty-row">
+                <td colspan="6">No patrons have checked in yet today.</td>
+              </tr>
             </tbody>
           </table>
         </div>
