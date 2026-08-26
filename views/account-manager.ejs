@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Account manager | Libspace</title>
     <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/account-menu.js" defer></script>
   </head>
   <body class="page-enter account-manager-page">
-    <header class="topbar"><a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a><button id="logout-button" class="secondary-button" type="button">Sign out</button></header>
+    <header class="topbar"><a class="brand" href="/" aria-label="Libspace home"><span class="brand-mark" aria-hidden="true">L</span><span>Lib<em>space</em></span></a><div class="account-menu"><div class="status-pill" tabindex="0" aria-label="Account menu"><span class="status-dot"></span><span><%= locals.account?.name || 'Library Workspace' %></span><span class="caret">▾</span></div><div class="account-dropdown" aria-label="Account options"><button type="button" class="dropdown-item">Account</button><button type="button" class="dropdown-item">Admin</button><button type="button" class="dropdown-item danger">Logout</button></div></div></header>
     <main class="workspace account-manager">
-      <section class="intro"><div class="eyebrow">Administration</div><h1>Account <span>manager.</span></h1><p class="intro-copy">Create administrator accounts and control access to the library workspace.</p></section>
+        
+     
+       <section class="intro"><div class="eyebrow">Administration</div> <h1>Account <span>manager.</span></h1><p class="intro-copy">Create administrator accounts and control access to the library workspace.</p> <br> <a class="back-link" href="/">← Dashboard</a> </section>
+       
       <section class="catalog-panel account-grid">
-        <form id="account-form" class="details-form"><div class="panel-heading"><div><span class="step-label">01 / New administrator</span><h2>Create account</h2></div></div><label class="field"><span>Name</span><input name="name" required maxlength="150" /></label><label class="field"><span>Username</span><input name="username" required maxlength="100" autocomplete="off" /></label><label class="field"><span>Password</span><input name="password" type="password" required minlength="8" autocomplete="new-password" /></label><button class="primary-button" type="submit"><span>Create administrator</span><span class="button-arrow" aria-hidden="true">→</span></button><div id="account-message" class="form-message" role="alert" hidden></div></form>
+        
+        <form id="account-form" class="details-form"><div class="panel-heading"><div><span class="step-label">01 / New administrator</span><h2>Create account</h2></div></div><label class="field"><span>Name</span><input name="name" required maxlength="150" /></label><label class="field"><span>Username</span><input name="username" required maxlength="100" autocomplete="off" /></label><label class="field"><span>Password</span><input name="password" type="password" required minlength="8" autocomplete="new-password" /></label><br><button class="primary-button" type="submit"><span>Create administrator</span><span class="button-arrow" aria-hidden="true">→</span></button><div id="account-message" class="form-message" role="alert" hidden></div></form>
+        
         <section class="results"><div class="panel-heading"><div><span class="step-label">02 / Existing administrators</span><h2>Accounts</h2></div></div><div id="accounts-list" class="account-list" aria-live="polite"></div></section>
       </section>
     </main>

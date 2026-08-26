@@ -56,18 +56,4 @@ accountForm.addEventListener('submit', async (event) => {
   loadAccounts();
 });
 
-document.getElementById('logout-button').addEventListener('click', () => {
-  const dialog = document.createElement('dialog');
-  dialog.innerHTML = '<form method="dialog" class="logout-dialog-content"><h2>Sign out?</h2><p>Your current session will end on this device.</p><div class="logout-dialog-actions"><button value="cancel" class="secondary-button">Cancel</button><button value="confirm" class="danger-button">Sign out</button></div></form>';
-  document.body.append(dialog);
-  dialog.addEventListener('close', async () => {
-    if (dialog.returnValue === 'confirm') {
-      await fetch('/api/auth/logout', { method: 'POST' });
-      window.location.href = '/admin-login';
-    }
-    dialog.remove();
-  }, { once: true });
-  dialog.showModal();
-});
-
 loadAccounts();
